@@ -9,6 +9,8 @@ import Navigation from '@/components/Navigation'
 import ParticleBackground from '@/components/ParticleBackground'
 import CarbonCalculator from '@/components/CarbonCalculator'
 import PlasticCalculator from '@/components/PlasticCalculator'
+import WaterCalculator from '@/components/WaterCalculator'
+import ElecCalculator from '@/components/ElecCalculator'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -117,35 +119,52 @@ export default function Calculators() {
         Use our interactive tools to measure and improve your environmental footprint
       </p>
     </motion.div>
-
     <div className="flex justify-center">
       <Tabs defaultValue="carbon" className="w-full max-w-xl">
-        <TabsList className="grid w-full grid-cols-2 mb-8">
-          <TabsTrigger value="carbon">Carbon Calculator</TabsTrigger>
-          <TabsTrigger value="plastic">Plastic Calculator</TabsTrigger>
-        </TabsList>
-        <TabsContent value="carbon">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <CarbonCalculator />
-          </motion.div>
-        </TabsContent>
-        <TabsContent value="plastic">
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <PlasticCalculator />
-          </motion.div>
-        </TabsContent>
+      <TabsList className="grid w-full grid-cols-4 mb-8">
+        <TabsTrigger value="carbon">Carbon Calculator</TabsTrigger>
+        <TabsTrigger value="plastic">Plastic Calculator</TabsTrigger>
+        <TabsTrigger value="water">Water Calculator</TabsTrigger>
+        <TabsTrigger value="electricity">Electricity Calculator</TabsTrigger>
+      </TabsList>
+      <TabsContent value="carbon">
+        <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        >
+        <CarbonCalculator />
+        </motion.div>
+      </TabsContent>
+      <TabsContent value="plastic">
+        <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        >
+        <PlasticCalculator />
+        </motion.div>
+      </TabsContent>
+      <TabsContent value="water">
+        <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        >
+        <WaterCalculator />
+        </motion.div>
+      </TabsContent>
+      <TabsContent value="electricity">
+        <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        >
+        <ElecCalculator />
+        </motion.div>
+      </TabsContent>
       </Tabs>
-
-    </div>
-  </div>
+    </div> </div>
 </section>
 
       
