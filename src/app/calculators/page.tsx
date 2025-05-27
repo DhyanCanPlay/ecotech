@@ -1,4 +1,7 @@
+
 'use client'
+
+
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
@@ -6,6 +9,9 @@ import Navigation from '@/components/Navigation'
 import ParticleBackground from '@/components/ParticleBackground'
 import CarbonCalculator from '@/components/CarbonCalculator'
 import PlasticCalculator from '@/components/PlasticCalculator'
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 
 export default function Calculators() {
   const [calculatorsRef, calculatorsInView] = useInView({ threshold: 0.3 })
@@ -80,7 +86,7 @@ export default function Calculators() {
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}  
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
@@ -96,41 +102,51 @@ export default function Calculators() {
       </section>
 
       {/* Main Calculators */}
-      <section ref={calculatorsRef} className="py-16 relative z-30">
-        <div className="max-w-6xl mx-auto px-4">
+<section ref={calculatorsRef} className="py-16 relative z-30">
+  <div className="max-w-6xl mx-auto px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={calculatorsInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6 }}
+      className="text-center mb-12"
+    >
+      <h2 className="text-4xl font-bold gradient-text mb-6">
+        Calculate Your Impact
+      </h2>
+      <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+        Use our interactive tools to measure and improve your environmental footprint
+      </p>
+    </motion.div>
+
+    <div className="flex justify-center">
+      <Tabs defaultValue="carbon" className="w-full max-w-xl">
+        <TabsList className="grid w-full grid-cols-2 mb-8">
+          <TabsTrigger value="carbon">Carbon Calculator</TabsTrigger>
+          <TabsTrigger value="plastic">Plastic Calculator</TabsTrigger>
+        </TabsList>
+        <TabsContent value="carbon">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={calculatorsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            initial={{ opacity: 0, x: -50 }}
+            animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-4xl font-bold gradient-text mb-6">
-              Calculate Your Impact
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Use our interactive tools to measure and improve your environmental footprint
-            </p>
+            <CarbonCalculator />
           </motion.div>
+        </TabsContent>
+        <TabsContent value="plastic">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <PlasticCalculator />
+          </motion.div>
+        </TabsContent>
+      </Tabs>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <CarbonCalculator />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={calculatorsInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <PlasticCalculator />
-            </motion.div>
-          </div>
-        </div>
-      </section>
+    </div>
+  </div>
+</section>
 
       
       {/* Environmental Tips */}

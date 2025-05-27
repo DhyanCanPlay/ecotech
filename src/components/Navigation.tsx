@@ -12,8 +12,7 @@ export default function Navigation() {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-     { name: 'Calculators', href: '/calculators' },
-   ,
+    { name: 'Calculators', href: '/calculators' }
   ]
 
   const isActive = (href: string) => pathname === href
